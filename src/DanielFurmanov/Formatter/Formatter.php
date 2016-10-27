@@ -1,5 +1,6 @@
 <?php namespace DanielFurmanov\Formatter;
 
+use DanielFurmanov\Formatter\Parsers\Parser;
 use InvalidArgumentException;
 use DanielFurmanov\Formatter\Parsers\ArrayParser;
 use DanielFurmanov\Formatter\Parsers\CsvParser;
@@ -18,6 +19,8 @@ class Formatter {
 	const YAML = 'yaml';
 
 	private static $supportedTypes = [self::CSV, self::JSON, self::XML, self::ARR, self::YAML];
+
+	/** @var Parser  */
 	private $parser;
 
 	/**
@@ -55,7 +58,7 @@ class Formatter {
 		);
 	}
 
-	private function __construct($parser) {
+	private function __construct(Parser $parser) {
 		$this->parser = $parser;
 	}
 
