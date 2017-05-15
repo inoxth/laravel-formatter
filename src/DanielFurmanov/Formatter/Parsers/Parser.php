@@ -114,6 +114,7 @@ abstract class Parser {
 			}
 		}
 
+		// return formatted xml
 		if ($formated) {
 			$dom = dom_import_simplexml($structure)->ownerDocument;
 			$dom->formatOutput = true;
