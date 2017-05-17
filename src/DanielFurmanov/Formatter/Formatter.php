@@ -74,8 +74,8 @@ class Formatter {
 		return $this->parser->toYaml();
 	}
 
-	public function toXml($baseNode = 'xml', $encoding = 'utf-8', $formated = false) {
-		return $this->parser->toXml($baseNode, $encoding, $formated);
+	public function toXml($baseNode = 'xml', $encoding = 'utf-8', $formatted = false) {
+		return $this->parser->toXml($baseNode, $encoding, $formatted);
 	}
 
 	public function toCsv() {
