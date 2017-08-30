@@ -3,6 +3,7 @@
 use Spyc;
 use Illuminate\Support\Str;
 use DanielFurmanov\Formatter\ArrayHelpers;
+use \SimpleXmlElement;
 
 /**
  * Parser Interface
@@ -74,6 +75,13 @@ abstract class Parser {
 				foreach ($data[$key] as $attrName => $attrValue) {
 					$structure->addAttribute($attrName, $attrValue);
 				}
+			}
+			// Checking for element text value (for elements without children)
+			elseif ($key === '@value') {
+				/** @var SimpleXMLElement $currentNode */
+				$currentNode = $structure->xpath(".")[0];
+
+				dom_import_simplexml($currentNode)->nodeValue = $value;
 			}
 			else {
 				// convert our booleans to 0/1 integer values so they are
