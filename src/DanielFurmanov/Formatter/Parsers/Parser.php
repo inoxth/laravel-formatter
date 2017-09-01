@@ -2,6 +2,7 @@
 
 use Spyc;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\Support\Arrayable;
 use DanielFurmanov\Formatter\ArrayHelpers;
 use \SimpleXmlElement;
 
@@ -67,6 +68,8 @@ abstract class Parser {
 		// Force it to be something useful
 		if (!is_array($data) && !is_object($data)) {
 			$data = (array) $data;
+		} elseif ($data instanceof Arrayable) {
+			$data = $data->toArray();
 		}
 
 		foreach ($data as $key => $value) {

@@ -1,6 +1,7 @@
 <?php namespace DanielFurmanov\Formatter\Parsers;
 
 use InvalidArgumentException;
+use Illuminate\Contracts\Support\Arrayable;
 
 class ArrayParser extends Parser {
 
@@ -12,7 +13,11 @@ class ArrayParser extends Parser {
 		}
 
 		if (is_array($data) || is_object($data)) {
-			$this->array = (array) $data;
+			if ($data instanceof Arrayable) {
+				$this->array = $data->toArray();
+			} else {
+				$this->array = $data;
+			}
 		} else {
 			throw new InvalidArgumentException(
 				'ArrayParser only accepts (optionally serialized) [object, array] for $data.'
